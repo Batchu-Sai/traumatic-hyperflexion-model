@@ -196,7 +196,7 @@ Cord strain is computed as:
 If you use this code in your research, please cite:
 
 ```
-Batchu, S., Al-Atrache, Z., & Mossop, C. (2024). 
+Batchu, S., Al-Atrache, Z., Mossop, C. & Thomas, A.J. (2025). 
 A Lumped-Parameter Model of Spinal Cord Failure in Hyperflexion Trauma. 
 [Journal Name], [Volume], [Pages].
 ```
@@ -206,6 +206,7 @@ A Lumped-Parameter Model of Spinal Cord Failure in Hyperflexion Trauma.
 - **Sai Batchu** - Department of Neurosurgery, Cooper University Health Systems
 - **Zein Al-Atrache** - Department of Neurosurgery, Cooper University Health Systems  
 - **Corey Mossop** - Department of Neurosurgery, Cooper University Health Systems
+- **Ajith J Thomas** - Department of Neurosurgery, Cooper University Health Systems
 
 ## License
 
@@ -213,4 +214,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-This work was supported by the Department of Neurosurgery at Cooper University Health Systems. The model parameters are based on experimental data from the biomechanical literature cited in the manuscript. 
+The model parameters are based on experimental data from the biomechanical literature cited in the manuscript. 
