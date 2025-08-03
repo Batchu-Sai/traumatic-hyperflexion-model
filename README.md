@@ -339,11 +339,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub: [@Batchu-Sai](https://github.com/Batchu-Sai)
 - Repository: [traumatic-hyperflexion-model](https://github.com/Batchu-Sai/traumatic-hyperflexion-model)
 
-## Acknowledgments
-
-- Biomechanical modeling community
-- Experimental validation data providers
-- Open-source scientific computing tools
 
 ## Troubleshooting
 
