@@ -400,19 +400,29 @@ class SpinalModelVisualizer:
         # Create comprehensive legend
         from matplotlib.patches import Patch
         
-        # Create legend handles
+        # Create legend handles with proper symbols
+        from matplotlib.lines import Line2D
+        
         legend_handles = [
             Patch(color=strain_colors[0], label='Max Strain, -50% Change'),
             Patch(color=strain_colors[1], label='Max Strain, +50% Change'),
             Patch(color=time_colors[0], label='Time to Failure, -50% Change'),
             Patch(color=time_colors[1], label='Time to Failure, +50% Change'),
-            Patch(color='#DC143C', label='No Failure Predicted'),
-            Patch(color='#666666', label='Negligible Change (○)')
+            Line2D([0], [0], marker='x', color='#DC143C', linestyle='None', 
+                   markersize=10, label='No Failure Predicted'),
+            Line2D([0], [0], marker='o', color='#666666', linestyle='None', 
+                   markersize=8, label='Negligible Change (<0.1%)')
         ]
         
         # Add legend inside the plot
         ax.legend(handles=legend_handles, loc='upper right',
                 frameon=True, fancybox=False, shadow=False, fontsize=16)
+        
+        # Add explanation text below the legend
+        ax.text(0.98, 0.85, 'Note:\n• Negligible Change: Parameter variation\n  has minimal effect (<0.1% change)\n• No Failure Predicted: Parameter change\n  prevents failure from occurring', 
+               transform=ax.transAxes, fontsize=11, ha='right', va='top',
+               bbox=dict(boxstyle='round,pad=0.5', facecolor='white', alpha=0.8),
+               style='italic')
         
         # Add grid
         ax.grid(True, alpha=0.2, linestyle='-', color='#D3D3D3', axis='y')
