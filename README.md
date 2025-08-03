@@ -1,6 +1,6 @@
 # Traumatic Hyperflexion Model
 
-A comprehensive biomechanical model for simulating spinal cord injury during hyperflexion trauma, implemented in Python with publication-quality visualization.
+A comprehensive biomechanical model for simulating spinal cord injury during hyperflexion trauma, implemented in Python.
 
 ## Overview
 
@@ -9,7 +9,6 @@ This repository contains a lumped-parameter biomechanical model that simulates s
 - **Quasi-static analysis** for equilibrium conditions
 - **Dynamic simulation** with RK4 integration
 - **Sensitivity analysis** for parameter variations
-- **Publication-quality figures** with professional formatting
 - **Comprehensive validation** against experimental data
 
 ## Model Components
@@ -339,11 +338,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Sai Batchu**
 - GitHub: [@Batchu-Sai](https://github.com/Batchu-Sai)
 - Repository: [traumatic-hyperflexion-model](https://github.com/Batchu-Sai/traumatic-hyperflexion-model)
-
-## References
-
-1. Yamada, H. (1970). *Strength of Biological Materials*. Williams & Wilkins.
-2. Lopez-Valdes, H. E., et al. (2011). *Spinal Cord Injury Biomechanics*. Journal of Biomechanics.
 
 ## Acknowledgments
 
