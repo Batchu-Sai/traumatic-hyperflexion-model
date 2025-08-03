@@ -226,7 +226,7 @@ class SpinalModelVisualizer:
         """
         # Parameters to analyze - include all key parameters as specified in manuscript
         param_names = ['K_theta', 'k_c', 'C_theta', 'r_c', 'epsilon_fail']
-        param_labels = ['$K_θ$', '$k_c$', '$C_θ$', '$r_c$', '$ε_fail$']
+        param_labels = ['$K_θ$', '$k_c$', '$C_θ$', '$r_c$', '$\\epsilon_{fail}$']
         
         # Create figure with optimal spacing for 5 parameters
         fig, ax = plt.subplots(figsize=(18, 8))
