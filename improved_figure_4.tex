@@ -30,8 +30,8 @@
         \fill[gray!15, draw=black, rounded corners=2pt, line width=0.8pt] (ICR) -- (TnBR) -- (TnTR) -- (TnTL) -- cycle;
         \node[font=\sffamily\bfseries, font=\fontsize{9}{9}] at ($(ICR)!0.5!(TnTR)$) {T$_n$};
         
-        % Top vertebra Tn+1
-        \coordinate (Tnp1BL) at ($(ICR)+(0,\h+0.3)$);
+        % Top vertebra Tn+1 - INCREASED SPACING
+        \coordinate (Tnp1BL) at ($(ICR)+(0,\h+0.6)$);
         \coordinate (Tnp1BR) at ($(Tnp1BL) + ({\w*cos(\phi)}, {\w*sin(\phi)})$);
         \coordinate (Tnp1TR) at ($(Tnp1BR) + ({-\h*sin(\phi)}, {\h*cos(\phi)})$);
         \coordinate (Tnp1TL) at ($(Tnp1BL) + ({-\h*sin(\phi)}, {\h*cos(\phi)})$);
@@ -55,27 +55,27 @@
             ($(cordForceMid)-(0.2,0)$) -- ($(cordForceMid)+(0.2,0)$);
         \node[left=5pt] at ($(cordForceMid)-(0.1,0)$) {$F_c$};
         
-        % Disc-ligament complex - ELONGATED in Y-direction
+        % Disc-ligament complex - ELONGATED in Y-direction with MORE SPACING
         \coordinate (discStart) at (TnTL);
         \coordinate (discEnd) at (Tnp1BL);
         \coordinate (discMid) at ($(discStart)!0.5!(discEnd)$);
         
-        % Spring-damper representation - ELONGATED in Y-direction
+        % Spring-damper representation - ELONGATED in Y-direction with MORE SPACING
         \draw[decorate, decoration={coil,aspect=0.15,segment length=6pt,amplitude=8pt}] 
-        (discStart) -- ($(discMid)-(0.6,0)$);
-        \draw[line width=1.5pt] ($(discMid)-(0.6,0)$) --++ (0.2,0);
-        \draw[line width=1.5pt] ($(discMid)-(0.5,0.2)$) rectangle ++(1.0,0.4);
-        \draw[line width=1.5pt] ($(discMid)+(0.5,0)$) -- (discEnd);
+        (discStart) -- ($(discMid)-(0.8,0)$);
+        \draw[line width=1.5pt] ($(discMid)-(0.8,0)$) --++ (0.3,0);
+        \draw[line width=1.5pt] ($(discMid)-(0.7,0.25)$) rectangle ++(1.4,0.5);
+        \draw[line width=1.5pt] ($(discMid)+(0.7,0)$) -- (discEnd);
         
-        % External moment M_ext (curved arrow) - moved more posteriorly
+        % External moment M_ext (curved arrow) - moved further out for MORE SPACING
         \draw[->, >=Stealth, line width=1.5pt, color=blue!60!black] 
-            ($(Tnp1TL)+(2,0.1)$) arc[start angle=110, end angle=30, radius=1.1];
-        \node at ($(Tnp1TL)+(3,0.3)$) {$M_{\text{ext}}$};
+            ($(Tnp1TL)+(2.5,0.1)$) arc[start angle=110, end angle=30, radius=1.3];
+        \node at ($(Tnp1TL)+(3.5,0.3)$) {$M_{\text{ext}}$};
         
-        % Disc-ligament moment M_disc-lig (curved arrow) - moved more anteriorly
+        % Disc-ligament moment M_disc-lig (curved arrow) - moved further out for MORE SPACING
         \draw[->, >=Stealth, line width=1.2pt, color=green!60!black] 
-            ($(discMid)+(0.7,0.6)$) arc[start angle=45, end angle=135, radius=1.2];
-        \node at ($(discMid)+(-0.7,0.4)$) {$M_{\text{disc-lig}}$};
+            ($(discMid)+(1.0,0.8)$) arc[start angle=45, end angle=135, radius=1.5];
+        \node at ($(discMid)+(-1.0,0.6)$) {$M_{\text{disc-lig}}$};
         
     \end{tikzpicture}
     \caption{Lumped-parameter model schematic showing rigid vertebrae (T$_n$, T$_{n+1}$), disc-ligament spring-damper complex, and force vectors. The instantaneous center of rotation (ICR) and moment arm ($r_c$) are indicated. External moment ($M_{\text{ext}}$) drives flexion, resisted by disc-ligament moment ($M_{\text{disc-lig}}$) and spinal cord force ($F_c$). The model incorporates a torsional spring-damper system for the disc-ligament complex and a tensile element for the spinal cord, parameterized with material properties ($E_c = 0.3 \times 10^6$ Pa, $A_c = 3.2 \times 10^{-5}$ m$^2$, $L_0 = 0.102$ m) and geometric parameters ($r_c = 0.019$ m). The system's dynamic behavior is described by a second-order nonlinear ordinary differential equation that enables efficient simulation of dynamic strain evolution during traumatic hyperflexion events.}
