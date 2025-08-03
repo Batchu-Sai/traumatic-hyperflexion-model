@@ -52,8 +52,8 @@ Where:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Batchu-Sai/cord-avulsion-model.git
-cd cord-avulsion-model
+git clone https://github.com/Batchu-Sai/traumatic-hyperflexion-model.git
+cd traumatic-hyperflexion-model
 ```
 
 2. Install dependencies:
