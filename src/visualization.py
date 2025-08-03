@@ -353,10 +353,15 @@ class SpinalModelVisualizer:
             
             # Bar 3: Time to Failure -50%
             if not no_failure_data[0]:  # Only plot if there's a failure
-                bar3 = ax.bar(group_bars[2], scaled_time_data[0], bar_width, 
-                             color=time_colors[0], edgecolor='black', linewidth=0.5, alpha=0.9)
-                bars.append(bar3)
-                bar_labels.append('Time to Failure, -50%')
+                if abs(scaled_time_data[0]) > 0.001:  # Only plot if value is significant
+                    bar3 = ax.bar(group_bars[2], scaled_time_data[0], bar_width, 
+                                 color=time_colors[0], edgecolor='black', linewidth=0.5, alpha=0.9)
+                    bars.append(bar3)
+                    bar_labels.append('Time to Failure, -50%')
+                else:
+                    # Add small marker for negligible time changes
+                    ax.text(group_bars[2], 0.1, '○', color='#666666', fontsize=12, 
+                           ha='center', va='bottom')
             else:
                 # Add red X for no failure
                 ax.text(group_bars[2], -5, '×', color='#DC143C', fontsize=22, 
@@ -364,10 +369,15 @@ class SpinalModelVisualizer:
             
             # Bar 4: Time to Failure +50%
             if not no_failure_data[1]:  # Only plot if there's a failure
-                bar4 = ax.bar(group_bars[3], scaled_time_data[1], bar_width, 
-                             color=time_colors[1], edgecolor='black', linewidth=0.5, alpha=0.9)
-                bars.append(bar4)
-                bar_labels.append('Time to Failure, +50%')
+                if abs(scaled_time_data[1]) > 0.001:  # Only plot if value is significant
+                    bar4 = ax.bar(group_bars[3], scaled_time_data[1], bar_width, 
+                                 color=time_colors[1], edgecolor='black', linewidth=0.5, alpha=0.9)
+                    bars.append(bar4)
+                    bar_labels.append('Time to Failure, +50%')
+                else:
+                    # Add small marker for negligible time changes
+                    ax.text(group_bars[3], 0.1, '○', color='#666666', fontsize=12, 
+                           ha='center', va='bottom')
             else:
                 # Add red X for no failure
                 ax.text(group_bars[3], -5, '×', color='#DC143C', fontsize=22, 
