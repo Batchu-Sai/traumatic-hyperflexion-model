@@ -220,7 +220,11 @@ class SpinalCordModel:
         
         # Calculate initial strain and moment
         epsilon_array[0] = self.params['r_c'] * phi_array[0] / self.params['L_0']
-        M_ext_array[0] = M_ext_func(0)
+        try:
+            M_ext_array[0] = M_ext_func(0.0)
+        except Exception as e:
+            # Fallback if function call fails
+            M_ext_array[0] = M_ext_func(0) if callable(M_ext_func) else 0.0
         
         # Integration loop
         failure_time = None
@@ -236,7 +240,11 @@ class SpinalCordModel:
             phi_array[i] = new_phi
             phi_dot_array[i] = new_phi_dot
             epsilon_array[i] = self.params['r_c'] * new_phi / self.params['L_0']
-            M_ext_array[i] = M_ext_func(t_array[i])
+            try:
+                M_ext_array[i] = M_ext_func(t_array[i])
+            except Exception as e:
+                # Fallback if function call fails
+                M_ext_array[i] = M_ext_func(float(t_array[i])) if callable(M_ext_func) else 0.0
             
             # Check for failure
             if epsilon_array[i] >= self.params['epsilon_fail'] and failure_time is None:
@@ -266,7 +274,13 @@ class SpinalCordModel:
         callable
             Function that returns M_0 for all t >= 0
         """
-        return lambda t: M_0 if t >= 0 else 0.0
+        def step_func(t):
+            """Step function that returns M_0 for t >= 0, 0 otherwise."""
+            if isinstance(t, (int, float, np.number)):
+                return M_0 if t >= 0 else 0.0
+            else:
+                return M_0  # Default to M_0 for non-numeric inputs
+        return step_func
     
     def sensitivity_analysis(self, parameter_name: str, variation_range: np.ndarray,
                            M_ext: float = 20.0, t_final: float = 0.1) -> Dict[str, np.ndarray]:
