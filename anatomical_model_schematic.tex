@@ -1,0 +1,79 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.4, every node/.style={font=\sffamily, font=\fontsize{8}{8}\selectfont}]
+        
+        % Setup with more realistic proportions
+        \def\w{2.5}      % Vertebra width (reduced)
+        \def\h{1.2}      % Vertebra height (reduced)
+        \def\cordW{0.15} % Spinal cord width
+        \def\discW{0.8}  % Disc width
+        \def\phi{15}     % Smaller rotation angle
+        
+        % Base vertebra Tn (more realistic size)
+        \coordinate (ICR) at (0,0);
+        \coordinate (TnBR) at ($(ICR) + (\w,0)$);
+        \coordinate (TnTR) at ($(TnBR) + (0,\h)$);
+        \coordinate (TnTL) at ($(ICR) + (0,\h)$);
+        
+        \fill[gray!15, draw=black, rounded corners=2pt, line width=0.8pt] (ICR) -- (TnBR) -- (TnTR) -- (TnTL) -- cycle;
+        \node[font=\sffamily\bfseries, font=\fontsize{9}{9}] at ($(ICR)!0.5!(TnTR)$) {T$_n$};
+        
+        % Top vertebra Tn+1 (properly spaced)
+        \coordinate (Tnp1BL) at ($(ICR)+(0,\h+0.3)$);  % Reduced gap
+        \coordinate (Tnp1BR) at ($(Tnp1BL) + ({\w*cos(\phi)}, {\w*sin(\phi)})$);
+        \coordinate (Tnp1TR) at ($(Tnp1BR) + ({-\h*sin(\phi)}, {\h*cos(\phi)})$);
+        \coordinate (Tnp1TL) at ($(Tnp1BL) + ({-\h*sin(\phi)}, {\h*cos(\phi)})$);
+        
+        \fill[gray!15, draw=black, rounded corners=2pt, line width=0.8pt] (Tnp1BL) -- (Tnp1BR) -- (Tnp1TR) -- (Tnp1TL) -- cycle;
+        \node[font=\sffamily\bfseries, font=\fontsize{9}{9}] at ($(Tnp1BL)!0.5!(Tnp1TR)$) {T$_{n+1}$};
+        
+        % ICR marker (smaller, more realistic)
+        \fill[black] (ICR) circle (1.5pt);
+        \node[below left=1pt] at (ICR) {ICR};
+        
+        % Flexion angle φ (smaller, more realistic)
+        \draw[->, thick, >=Stealth, line width=0.6pt] (1.2,0) arc[start angle=0, end angle=\phi, radius=1.2];
+        \node at ($(ICR)+(1.4,0.3)$) {$\phi$};
+        
+        % Spinal cord (thinner, more realistic)
+        \coordinate (cordLow) at ($(TnTR)-(0.15,0)$);
+        \coordinate (cordHigh) at ($(Tnp1TR)-(0.15,0)$);
+        \draw[line width=1.5pt, color=blue!60!black] (cordLow) -- (cordHigh);
+        
+        % Force vector (smaller, more proportional)
+        \coordinate (cordMid) at ($(cordLow)!0.5!(cordHigh)$);
+        \draw[->, >=Stealth, line width=0.6pt] ($(cordMid)+(0.3,0.3)$) -- ($(cordMid)+(0.02,0.02)$);
+        \node[right=3pt] at ($(cordMid)+(0.32,0.3)$) {$F_c$};
+        
+        % Moment arm r_c (more realistic length)
+        \draw[dashed, line width=0.5pt] (ICR) -- (cordLow);
+        \coordinate (rcMid) at ($(ICR)!0.5!(cordLow)$);
+        \node[right=1pt] at (rcMid) {$r_c$};
+        
+        % External moment M_ext (smaller, more realistic)
+        \draw[->, >=Stealth, line width=0.6pt] ($(Tnp1TL)+(0.5,0.1)$) arc[start angle=110, end angle=30, radius=1.0];
+        \node at ($(Tnp1TL)+(0.8,0.3)$) {$M_{\text{ext}}$};
+        
+        % Disc-ligament complex (more realistic proportions)
+        \coordinate (discStart) at (TnTL);
+        \coordinate (discEnd) at (Tnp1BL);
+        \coordinate (discMid) at ($(discStart)!0.5!(discEnd)$);
+        
+        % Disc (thinner, more realistic)
+        \draw[decorate, decoration={coil,aspect=0.4,segment length=2pt,amplitude=1.5pt}] 
+        (discStart) -- ($(discMid)-(0.2,0)$);
+        \draw[line width=0.5pt] ($(discMid)-(0.2,0)$) --++ (0.05,0);
+        \draw[line width=0.5pt] ($(discMid)-(0.15,0.05)$) rectangle ++(0.3,0.1);
+        \draw[line width=0.5pt] ($(discMid)+(0.15,0)$) -- (discEnd);
+        
+        % M_disc-lig label (smaller, better positioned)
+        \draw[->, >=Stealth, line width=0.6pt] ($(discMid)+(0.3,0.3)$) -- ($(discMid)+(0.05,0.05)$);
+        \node at ($(discMid)+(0.5,0.4)$) {$M_{\text{disc-lig}}$};
+        
+        % Strain calculation (minimal, better positioned)
+        \node[right=8pt] at (cordMid) {$\varepsilon = \frac{r_c \phi}{L_0}$};
+        
+    \end{tikzpicture}
+
+    \label{fig:model_schematic}
+\end{figure} 

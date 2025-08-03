@@ -107,7 +107,7 @@ class SpinalModelVisualizer:
         # Customize axes exactly as specified
         ax.set_xlabel('Applied External Moment (Nm)', fontsize=12)
         ax.set_ylabel('Spinal Cord Strain', fontsize=12)
-        ax.set_title('Quasi-Static Spinal Cord Strain Response', fontsize=14, fontweight='bold')
+
         
         # Set exact axis ranges and ticks
         ax.set_xlim(0, 50)
@@ -183,8 +183,7 @@ class SpinalModelVisualizer:
         # Customize axes exactly as specified
         ax.set_xlabel('Time (ms)', fontsize=12)
         ax.set_ylabel('Spinal Cord Strain', fontsize=12)
-        ax.set_title(f'Dynamic Response to Step Input Moment (M₀ = {M_0} Nm)', 
-                    fontsize=14, fontweight='bold')
+
         
         # Set exact axis ranges and ticks
         ax.set_xlim(0, 50)
@@ -389,8 +388,7 @@ class SpinalModelVisualizer:
         # Customize axes
         ax.set_xlabel('Model Parameter', fontsize=20)
         ax.set_ylabel('Percent Change in Output (%)', fontsize=20)
-        ax.set_title('Sensitivity Analysis (±50% Parameter Changes)', 
-                    fontsize=22, fontweight='bold', pad=20)
+
         
         # Set x-axis labels
         group_centers = [np.mean(bar_positions[i]) for i in range(n_params)]

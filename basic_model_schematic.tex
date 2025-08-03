@@ -1,0 +1,55 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.4, every node/.style={font=\sffamily, font=\fontsize{8}{8}\selectfont}]
+        
+        % Setup with realistic proportions
+        \def\w{2.5}      % Vertebra width
+        \def\h{1.2}      % Vertebra height
+        \def\phi{15}     % Rotation angle
+        
+        % Base vertebra Tn
+        \coordinate (ICR) at (0,0);
+        \coordinate (TnBR) at ($(ICR) + (\w,0)$);
+        \coordinate (TnTR) at ($(TnBR) + (0,\h)$);
+        \coordinate (TnTL) at ($(ICR) + (0,\h)$);
+        
+        \fill[gray!15, draw=black, rounded corners=2pt, line width=0.8pt] (ICR) -- (TnBR) -- (TnTR) -- (TnTL) -- cycle;
+        \node[font=\sffamily\bfseries, font=\fontsize{9}{9}] at ($(ICR)!0.5!(TnTR)$) {T$_n$};
+        
+        % Top vertebra Tn+1
+        \coordinate (Tnp1BL) at ($(ICR)+(0,\h+0.3)$);
+        \coordinate (Tnp1BR) at ($(Tnp1BL) + ({\w*cos(\phi)}, {\w*sin(\phi)})$);
+        \coordinate (Tnp1TR) at ($(Tnp1BR) + ({-\h*sin(\phi)}, {\h*cos(\phi)})$);
+        \coordinate (Tnp1TL) at ($(Tnp1BL) + ({-\h*sin(\phi)}, {\h*cos(\phi)})$);
+        
+        \fill[gray!15, draw=black, rounded corners=2pt, line width=0.8pt] (Tnp1BL) -- (Tnp1BR) -- (Tnp1TR) -- (Tnp1TL) -- cycle;
+        \node[font=\sffamily\bfseries, font=\fontsize{9}{9}] at ($(Tnp1BL)!0.5!(Tnp1TR)$) {T$_{n+1}$};
+        
+        % ICR marker
+        \fill[black] (ICR) circle (1.5pt);
+        \node[below left=1pt] at (ICR) {ICR};
+        
+        % Flexion angle φ
+        \draw[->, thick, >=Stealth, line width=0.6pt] (1.2,0) arc[start angle=0, end angle=\phi, radius=1.2];
+        \node at ($(ICR)+(1.4,0.3)$) {$\phi$};
+        
+        % Spinal cord
+        \coordinate (cordLow) at ($(TnTR)-(0.15,0)$);
+        \coordinate (cordHigh) at ($(Tnp1TR)-(0.15,0)$);
+        \draw[line width=1.5pt, color=blue!60!black] (cordLow) -- (cordHigh);
+        
+        % Disc-ligament complex
+        \coordinate (discStart) at (TnTL);
+        \coordinate (discEnd) at (Tnp1BL);
+        \coordinate (discMid) at ($(discStart)!0.5!(discEnd)$);
+        
+        \draw[decorate, decoration={coil,aspect=0.4,segment length=2pt,amplitude=1.5pt}] 
+        (discStart) -- ($(discMid)-(0.2,0)$);
+        \draw[line width=0.5pt] ($(discMid)-(0.2,0)$) --++ (0.05,0);
+        \draw[line width=0.5pt] ($(discMid)-(0.15,0.05)$) rectangle ++(0.3,0.1);
+        \draw[line width=0.5pt] ($(discMid)+(0.15,0)$) -- (discEnd);
+        
+    \end{tikzpicture}
+
+    \label{fig:model_schematic}
+\end{figure} 
