@@ -42,16 +42,16 @@
             ($(cordForceMid)-(0.2,0)$) -- ($(cordForceMid)+(0.2,0)$);
         \node[left=5pt] at ($(cordForceMid)-(0.1,0)$) {$F_c$};
         
-        % Disc-ligament complex - ELONGATED for better visibility
+        % Disc-ligament complex - ELONGATED in Y-direction
         \coordinate (discStart) at (TnTL);
         \coordinate (discEnd) at (Tnp1BL);
         \coordinate (discMid) at ($(discStart)!0.5!(discEnd)$);
         
-        % Spring-damper representation - ELONGATED
-        \draw[decorate, decoration={coil,aspect=0.15,segment length=6pt,amplitude=6pt}] 
+        % Spring-damper representation - ELONGATED in Y-direction
+        \draw[decorate, decoration={coil,aspect=0.15,segment length=6pt,amplitude=8pt}] 
         (discStart) -- ($(discMid)-(0.6,0)$);
         \draw[line width=1.5pt] ($(discMid)-(0.6,0)$) --++ (0.2,0);
-        \draw[line width=1.5pt] ($(discMid)-(0.5,0.15)$) rectangle ++(1.0,0.3);
+        \draw[line width=1.5pt] ($(discMid)-(0.5,0.2)$) rectangle ++(1.0,0.4);
         \draw[line width=1.5pt] ($(discMid)+(0.5,0)$) -- (discEnd);
         
         % External moment M_ext (curved arrow) - moved more posteriorly
