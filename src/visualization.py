@@ -330,16 +330,26 @@ class SpinalModelVisualizer:
                 scaled_time_data = time_data
             
             # Bar 1: Max Strain -50%
-            bar1 = ax.bar(group_bars[0], scaled_strain_data[0], bar_width, 
-                         color=strain_colors[0], edgecolor='black', linewidth=0.5, alpha=0.9)
-            bars.append(bar1)
-            bar_labels.append('Max Strain, -50%')
+            if abs(scaled_strain_data[0]) > 0.001:  # Only plot if value is significant
+                bar1 = ax.bar(group_bars[0], scaled_strain_data[0], bar_width, 
+                             color=strain_colors[0], edgecolor='black', linewidth=0.5, alpha=0.9)
+                bars.append(bar1)
+                bar_labels.append('Max Strain, -50%')
+            else:
+                # Add small marker for zero/negligible values
+                ax.text(group_bars[0], 0.1, '○', color='#666666', fontsize=12, 
+                       ha='center', va='bottom')
             
             # Bar 2: Max Strain +50%
-            bar2 = ax.bar(group_bars[1], scaled_strain_data[1], bar_width, 
-                         color=strain_colors[1], edgecolor='black', linewidth=0.5, alpha=0.9)
-            bars.append(bar2)
-            bar_labels.append('Max Strain, +50%')
+            if abs(scaled_strain_data[1]) > 0.001:  # Only plot if value is significant
+                bar2 = ax.bar(group_bars[1], scaled_strain_data[1], bar_width, 
+                             color=strain_colors[1], edgecolor='black', linewidth=0.5, alpha=0.9)
+                bars.append(bar2)
+                bar_labels.append('Max Strain, +50%')
+            else:
+                # Add small marker for zero/negligible values
+                ax.text(group_bars[1], 0.1, '○', color='#666666', fontsize=12, 
+                       ha='center', va='bottom')
             
             # Bar 3: Time to Failure -50%
             if not no_failure_data[0]:  # Only plot if there's a failure
@@ -386,7 +396,8 @@ class SpinalModelVisualizer:
             Patch(color=strain_colors[1], label='Max Strain, +50% Change'),
             Patch(color=time_colors[0], label='Time to Failure, -50% Change'),
             Patch(color=time_colors[1], label='Time to Failure, +50% Change'),
-            Patch(color='#DC143C', label='No Failure Predicted')
+            Patch(color='#DC143C', label='No Failure Predicted'),
+            Patch(color='#666666', label='Negligible Change (○)')
         ]
         
         # Add legend inside the plot
