@@ -43,14 +43,14 @@
         \fill[black] (ICR) circle (1.5pt);
         \node[below left=1pt] at (ICR) {ICR};
         
-        % Moment arm r_c (dashed line) - moved further back
-        \coordinate (cordPoint) at ($(TnTR)-(0.25,0)$);
+        % Moment arm r_c (dashed line) - moved to avoid T_n label
+        \coordinate (cordPoint) at ($(TnTR)-(0.3,0.1)$);
         \draw[dashed, line width=0.5pt] (ICR) -- (cordPoint);
-        \coordinate (rcMid) at ($(ICR)!0.5!(cordPoint)$);
-        \node[right=1pt] at (rcMid) {$r_c$};
+        \coordinate (rcMid) at ($(ICR)!0.6!(cordPoint)$);
+        \node[right=2pt] at (rcMid) {$r_c$};
         
         % Spinal cord force vector (CORRECTED: pointing posteriorly)
-        \coordinate (cordForceMid) at ($(cordPoint)!0.5!($(Tnp1TR)-(0.25,0)$)$);
+        \coordinate (cordForceMid) at ($(cordPoint)!0.5!($(Tnp1TR)-(0.3,0.1)$)$);
         \draw[->, >=Stealth, line width=2pt, color=red!60!black] 
             ($(cordForceMid)-(0.2,0)$) -- ($(cordForceMid)+(0.2,0)$);
         \node[left=5pt] at ($(cordForceMid)-(0.25,0)$) {$F_c$};
