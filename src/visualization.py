@@ -418,11 +418,7 @@ class SpinalModelVisualizer:
         ax.legend(handles=legend_handles, loc='upper right',
                 frameon=True, fancybox=False, shadow=False, fontsize=16)
         
-        # Add explanation text below the legend
-        ax.text(0.98, 0.85, 'Note:\n• Negligible Change: Parameter variation\n  has minimal effect (<0.1% change)\n• No Failure Predicted: Parameter change\n  prevents failure from occurring', 
-               transform=ax.transAxes, fontsize=11, ha='right', va='top',
-               bbox=dict(boxstyle='round,pad=0.5', facecolor='white', alpha=0.8),
-               style='italic')
+
         
         # Add grid
         ax.grid(True, alpha=0.2, linestyle='-', color='#D3D3D3', axis='y')
