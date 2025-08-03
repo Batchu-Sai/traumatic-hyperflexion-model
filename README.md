@@ -2,7 +2,7 @@
 
 A comprehensive biomechanical model for simulating spinal cord injury during hyperflexion trauma, implemented in Python with publication-quality visualization.
 
-## 📋 Overview
+## Overview
 
 This repository contains a lumped-parameter biomechanical model that simulates spinal cord injury during hyperflexion trauma. The model includes:
 
@@ -12,7 +12,7 @@ This repository contains a lumped-parameter biomechanical model that simulates s
 - **Publication-quality figures** with professional formatting
 - **Comprehensive validation** against experimental data
 
-## 🏗️ Model Components
+## Model Components
 
 ### Core Biomechanical Elements
 - **Disc-Ligament Complex**: Rotational stiffness (K_θ) and damping (C_θ)
@@ -36,28 +36,28 @@ Where:
 - `k_c`: Cord axial stiffness [N/m]
 - `r_c`: Cord moment arm [m]
 
-## 🚀 Features
+## Features
 
 ### Analysis Capabilities
-- ✅ **Quasi-static analysis** for slow loading conditions
-- ✅ **Dynamic simulation** with RK4 integration
-- ✅ **Sensitivity analysis** for all key parameters
-- ✅ **Failure prediction** with strain-based criteria
-- ✅ **Publication-quality figures** with professional formatting
+- **Quasi-static analysis** for slow loading conditions
+- **Dynamic simulation** with RK4 integration
+- **Sensitivity analysis** for all key parameters
+- **Failure prediction** with strain-based criteria
+- **Publication-quality figures** with professional formatting
 
 ### Visualization
-- ✅ **Figure 1**: Quasi-static strain response
-- ✅ **Figure 2**: Dynamic response to step input
-- ✅ **Figure 3**: Comprehensive sensitivity analysis
-- ✅ **Figure 4**: Model schematic diagram
+- **Figure 1**: Quasi-static strain response
+- **Figure 2**: Dynamic response to step input
+- **Figure 3**: Comprehensive sensitivity analysis
+- **Figure 4**: Model schematic diagram
 
 ### Validation
-- ✅ **Experimental data comparison**
-- ✅ **Failure strain validation** (0.08-0.12 range)
-- ✅ **Failure moment validation** (23-53 Nm range)
-- ✅ **Dynamic amplification factor** calculation
+- **Experimental data comparison**
+- **Failure strain validation** (0.08-0.12 range)
+- **Failure moment validation** (23-53 Nm range)
+- **Dynamic amplification factor** calculation
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 - Python 3.7 or higher
@@ -103,7 +103,7 @@ pip install -r requirements.txt
 python -c "from src.spinal_model import SpinalCordModel; print('Installation successful!')"
 ```
 
-## 🎯 Usage
+## Usage
 
 ### Quick Start - Run All Analyses
 ```bash
@@ -115,11 +115,11 @@ python demo.py
 ```
 
 This will:
-- ✅ Run model validation tests
-- ✅ Perform quasi-static and dynamic analyses
-- ✅ Generate all publication-quality figures
-- ✅ Display sensitivity analysis results
-- ✅ Save figures to the `figures/` directory
+- Run model validation tests
+- Perform quasi-static and dynamic analyses
+- Generate all publication-quality figures
+- Display sensitivity analysis results
+- Save figures to the `figures/` directory
 
 ### Step-by-Step Usage
 
@@ -263,7 +263,7 @@ for result in results:
 "
 ```
 
-## 📊 Results
+## Results
 
 ### Model Predictions
 - **Quasi-static failure moment**: ≈40.0 Nm
@@ -279,7 +279,7 @@ The model includes comprehensive sensitivity analysis for all key parameters:
 - **r_c** (Moment arm): Large effect on strain
 - **ε_fail** (Failure strain): Critical for failure prediction
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 traumatic-hyperflexion-model/
@@ -297,7 +297,7 @@ traumatic-hyperflexion-model/
 └── LICENSE                      # MIT License
 ```
 
-## 🧪 Testing
+## Testing
 
 Run the comprehensive test suite:
 ```bash
@@ -314,7 +314,7 @@ python tests/test_model.py
 python -m pytest tests/ -v
 ```
 
-## 📈 Validation
+## Validation
 
 ### Experimental Data Comparison
 | Metric | Model Prediction | Experimental Range | Reference |
@@ -322,7 +322,7 @@ python -m pytest tests/ -v
 | Failure Strain | 0.10 | 0.08-0.12 | [Yamada 1970] |
 | Failure Moment | ≈40.0 Nm | 23-53 Nm | [Lopez-Valdes 2011] |
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -330,28 +330,28 @@ python -m pytest tests/ -v
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
+## Author
 
 **Sai Batchu**
 - GitHub: [@Batchu-Sai](https://github.com/Batchu-Sai)
 - Repository: [traumatic-hyperflexion-model](https://github.com/Batchu-Sai/traumatic-hyperflexion-model)
 
-## 📚 References
+## References
 
 1. Yamada, H. (1970). *Strength of Biological Materials*. Williams & Wilkins.
 2. Lopez-Valdes, H. E., et al. (2011). *Spinal Cord Injury Biomechanics*. Journal of Biomechanics.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Biomechanical modeling community
 - Experimental validation data providers
 - Open-source scientific computing tools
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
