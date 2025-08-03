@@ -337,7 +337,7 @@ class SpinalModelVisualizer:
                 bar_labels.append('Max Strain, -50%')
             else:
                 # Add small marker for zero/negligible values
-                ax.text(group_bars[0], 0.1, '○', color='#666666', fontsize=12, 
+                ax.text(group_bars[0], 0.1, '○', color='#444444', fontsize=12, 
                        ha='center', va='bottom')
             
             # Bar 2: Max Strain +50%
@@ -348,7 +348,7 @@ class SpinalModelVisualizer:
                 bar_labels.append('Max Strain, +50%')
             else:
                 # Add small marker for zero/negligible values
-                ax.text(group_bars[1], 0.1, '○', color='#666666', fontsize=12, 
+                ax.text(group_bars[1], 0.1, '○', color='#444444', fontsize=12, 
                        ha='center', va='bottom')
             
             # Bar 3: Time to Failure -50%
@@ -360,7 +360,7 @@ class SpinalModelVisualizer:
                     bar_labels.append('Time to Failure, -50%')
                 else:
                     # Add small marker for negligible time changes
-                    ax.text(group_bars[2], 0.1, '○', color='#666666', fontsize=12, 
+                    ax.text(group_bars[2], 0.1, '○', color='#444444', fontsize=12, 
                            ha='center', va='bottom')
             else:
                 # Add red X for no failure
@@ -376,7 +376,7 @@ class SpinalModelVisualizer:
                     bar_labels.append('Time to Failure, +50%')
                 else:
                     # Add small marker for negligible time changes
-                    ax.text(group_bars[3], 0.1, '○', color='#666666', fontsize=12, 
+                    ax.text(group_bars[3], 0.1, '○', color='#444444', fontsize=12, 
                            ha='center', va='bottom')
             else:
                 # Add red X for no failure
@@ -410,7 +410,7 @@ class SpinalModelVisualizer:
             Patch(color=time_colors[1], label='Time to Failure, +50% Change'),
             Line2D([0], [0], marker='x', color='#DC143C', linestyle='None', 
                    markersize=10, label='No Failure Predicted'),
-            Line2D([0], [0], marker='o', color='#666666', linestyle='None', 
+            Line2D([0], [0], marker='o', color='#444444', linestyle='None', 
                    markersize=8, label='Negligible Change (<0.1%)')
         ]
         
