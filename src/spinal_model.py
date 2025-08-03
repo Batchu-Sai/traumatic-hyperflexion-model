@@ -300,6 +300,13 @@ class SpinalCordModel:
             modified_params = self.params.copy()
             modified_params[parameter_name] = param_value
             
+            # Handle k_c specially - modify E_c to achieve desired k_c
+            if parameter_name == 'k_c':
+                # Calculate required E_c to achieve desired k_c
+                # k_c = E_c * A_c / L_0, so E_c = k_c * L_0 / A_c
+                required_E_c = param_value * modified_params['L_0'] / modified_params['A_c']
+                modified_params['E_c'] = required_E_c
+            
             # Create new model instance
             modified_model = SpinalCordModel(modified_params)
             
