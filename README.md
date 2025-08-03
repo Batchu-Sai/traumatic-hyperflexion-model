@@ -151,7 +151,7 @@ model = SpinalCordModel()
 viz = SpinalModelVisualizer(model)
 
 # Generate dynamic response figure
-fig = viz.plot_dynamic_response('figures/dynamic_response.png')
+fig = viz.plot_dynamic_response(save_path='figures/dynamic_response.png')
 print('Dynamic response figure saved to figures/dynamic_response.png')
 "
 ```
@@ -166,7 +166,7 @@ model = SpinalCordModel()
 viz = SpinalModelVisualizer(model)
 
 # Generate sensitivity analysis figure
-fig = viz.plot_sensitivity_analysis('figures/sensitivity_analysis.png')
+fig = viz.plot_sensitivity_analysis(save_path='figures/sensitivity_analysis.png')
 print('Sensitivity analysis figure saved to figures/sensitivity_analysis.png')
 "
 ```
@@ -181,10 +181,10 @@ model = SpinalCordModel()
 viz = SpinalModelVisualizer(model)
 
 # Generate all figures
-fig1 = viz.plot_quasi_static_analysis('figures/quasi_static_analysis.png')
-fig2 = viz.plot_dynamic_response('figures/dynamic_response.png')
-fig3 = viz.plot_sensitivity_analysis('figures/sensitivity_analysis.png')
-fig4 = viz.plot_model_schematic('figures/model_schematic.png')
+fig1 = viz.plot_quasi_static_analysis(save_path='figures/quasi_static_analysis.png')
+fig2 = viz.plot_dynamic_response(save_path='figures/dynamic_response.png')
+fig3 = viz.plot_sensitivity_analysis(save_path='figures/sensitivity_analysis.png')
+fig4 = viz.plot_model_schematic(save_path='figures/model_schematic.png')
 
 print('All figures generated successfully!')
 "
