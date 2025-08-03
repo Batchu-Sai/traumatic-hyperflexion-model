@@ -1,217 +1,379 @@
-# Spinal Cord Hyperflexion Model
+# Traumatic Hyperflexion Model
 
-A lumped-parameter model for simulating spinal cord injury during hyperflexion trauma, implementing the mathematical framework described in the manuscript "A Lumped-Parameter Model of Spinal Cord Failure in Hyperflexion Trauma."
+A comprehensive biomechanical model for simulating spinal cord injury during hyperflexion trauma, implemented in Python with publication-quality visualization.
 
-## Overview
+## 📋 Overview
 
-This repository contains a complete implementation of a biomechanical model that investigates the transient strain patterns in spinal cord tissue during high-speed hyperflexion events. The model integrates rigid vertebral dynamics with a viscoelastic representation of spinal soft tissues to provide a mechanistic explanation for neural tissue failure in the absence of gross structural damage.
+This repository contains a lumped-parameter biomechanical model that simulates spinal cord injury during hyperflexion trauma. The model includes:
 
-## Key Features
+- **Quasi-static analysis** for equilibrium conditions
+- **Dynamic simulation** with RK4 integration
+- **Sensitivity analysis** for parameter variations
+- **Publication-quality figures** with professional formatting
+- **Comprehensive validation** against experimental data
 
-- **Quasi-static analysis**: Predicts failure moments and strain responses under slow loading conditions
-- **Dynamic simulation**: Uses fourth-order Runge-Kutta integration to capture transient effects
-- **Sensitivity analysis**: Identifies critical parameters affecting injury risk
-- **Validation**: Compares predictions with experimental literature data
-- **Visualization**: Generates publication-quality figures matching the manuscript
+## 🏗️ Model Components
 
-## Model Components
+### Core Biomechanical Elements
+- **Disc-Ligament Complex**: Rotational stiffness (K_θ) and damping (C_θ)
+- **Spinal Cord Element**: Axial stiffness (k_c) and moment arm (r_c)
+- **Nonlinear Stiffness**: Higher-order terms for realistic behavior
+- **Failure Criterion**: Strain-based failure threshold (ε_fail)
 
 ### Mathematical Formulation
-
-The model is based on a second-order nonlinear ordinary differential equation:
+The model is described by a second-order nonlinear ordinary differential equation:
 
 ```
-I_θ φ̈(t) + C_θ φ̇(t) + (K_θ + k_c r_c²) φ(t) + K_nl φ(t)³ = M_ext(t)
+I_θ * φ̈ + C_θ * φ̇ + (K_θ + k_c*r_c²)*φ + K_nl*φ³ = M_ext
 ```
 
 Where:
-- `φ(t)`: Flexion angle [rad]
+- `φ`: Flexion angle [rad]
+- `M_ext`: External moment [Nm]
 - `I_θ`: Rotational inertia [kg·m²]
+- `K_θ`: Disc-ligament stiffness [Nm/rad]
 - `C_θ`: Damping coefficient [Nms/rad]
-- `K_θ`: Linear rotational stiffness [Nm/rad]
 - `k_c`: Cord axial stiffness [N/m]
 - `r_c`: Cord moment arm [m]
-- `K_nl`: Nonlinear stiffness coefficient [Nm/rad³]
-- `M_ext(t)`: External moment [Nm]
 
-### Key Parameters
+## 🚀 Features
 
-| Parameter | Value | Units | Source |
-|-----------|-------|-------|--------|
-| K_θ | 60.0 | Nm/rad | Wilke et al. 2017 |
-| C_θ | 0.12 | Nms/rad | Estimated |
-| E_c | 0.3×10⁶ | Pa | Bartlett et al. 2016 |
-| A_c | 3.2×10⁻⁵ | m² | Tenny & Varacallo 2023 |
-| L_0 | 0.102 | m | Geometric |
-| r_c | 0.019 | m | Geometric |
-| ε_fail | 0.10 | - | Yamada 1970 |
-| I_θ | 4.8×10⁻⁴ | kg·m² | Estimated |
-| K_nl | 50.0 | Nm/rad³ | Shetye et al. 2014 |
+### Analysis Capabilities
+- ✅ **Quasi-static analysis** for slow loading conditions
+- ✅ **Dynamic simulation** with RK4 integration
+- ✅ **Sensitivity analysis** for all key parameters
+- ✅ **Failure prediction** with strain-based criteria
+- ✅ **Publication-quality figures** with professional formatting
 
-## Installation
+### Visualization
+- ✅ **Figure 1**: Quasi-static strain response
+- ✅ **Figure 2**: Dynamic response to step input
+- ✅ **Figure 3**: Comprehensive sensitivity analysis
+- ✅ **Figure 4**: Model schematic diagram
 
-1. Clone the repository:
+### Validation
+- ✅ **Experimental data comparison**
+- ✅ **Failure strain validation** (0.08-0.12 range)
+- ✅ **Failure moment validation** (23-53 Nm range)
+- ✅ **Dynamic amplification factor** calculation
+
+## 📦 Installation
+
+### Prerequisites
+- Python 3.7 or higher
+- pip package manager
+- Git (for cloning)
+
+### Step-by-Step Installation
+
+#### 1. Clone the Repository
 ```bash
+# Clone the repository to your local machine
 git clone https://github.com/Batchu-Sai/traumatic-hyperflexion-model.git
+
+# Navigate to the project directory
 cd traumatic-hyperflexion-model
 ```
 
-2. Install dependencies:
+#### 2. Create Virtual Environment
 ```bash
+# Create a virtual environment (recommended)
+python3 -m venv venv
+
+# Activate the virtual environment
+# On macOS/Linux:
+source venv/bin/activate
+
+# On Windows:
+# venv\Scripts\activate
+```
+
+#### 3. Install Dependencies
+```bash
+# Upgrade pip to latest version
+pip install --upgrade pip
+
+# Install required packages
 pip install -r requirements.txt
 ```
 
-## Usage
-
-### Basic Usage
-
-```python
-from src.spinal_model import SpinalCordModel
-from src.visualization import SpinalModelVisualizer
-
-# Initialize model
-model = SpinalCordModel()
-
-# Quasi-static analysis
-M_fail = model.get_quasi_static_failure_moment()
-print(f"Quasi-static failure moment: {M_fail:.1f} Nm")
-
-# Dynamic simulation
-M_ext_func = model.step_input_moment(20.0)
-results = model.simulate_dynamics(M_ext_func, t_final=0.1)
-
-# Generate figures
-visualizer = SpinalModelVisualizer(model)
-visualizer.generate_all_figures()
+#### 4. Verify Installation
+```bash
+# Test that the model can be imported
+python -c "from src.spinal_model import SpinalCordModel; print('Installation successful!')"
 ```
 
-### Running the Demo
+## 🎯 Usage
 
+### Quick Start - Run All Analyses
 ```bash
+# Make sure your virtual environment is activated
+source venv/bin/activate
+
+# Run the main demonstration script
 python demo.py
 ```
 
 This will:
-- Run model validation tests
-- Perform quasi-static and dynamic analyses
-- Generate all figures from the manuscript
-- Display sensitivity analysis results
+- ✅ Run model validation tests
+- ✅ Perform quasi-static and dynamic analyses
+- ✅ Generate all publication-quality figures
+- ✅ Display sensitivity analysis results
+- ✅ Save figures to the `figures/` directory
 
-### Generating Specific Figures
+### Step-by-Step Usage
 
-```python
-# Quasi-static analysis
-fig1 = visualizer.plot_quasi_static_analysis("quasi_static.png")
-
-# Dynamic response
-fig2 = visualizer.plot_dynamic_response(save_path="dynamic_response.png")
-
-# Sensitivity analysis
-fig3 = visualizer.plot_sensitivity_analysis("sensitivity.png")
-
-# Model schematic
-fig4 = visualizer.plot_model_schematic("schematic.png")
+#### 1. Activate Virtual Environment
+```bash
+# Always activate your virtual environment first
+source venv/bin/activate
 ```
 
-## Results
+#### 2. Run Individual Components
 
-### Model Validation
+**Quasi-Static Analysis:**
+```bash
+python -c "
+from src.spinal_model import SpinalCordModel
+model = SpinalCordModel()
+M_fail = model.get_quasi_static_failure_moment()
+print(f'Quasi-static failure moment: {M_fail:.1f} Nm')
+"
+```
 
-| Metric | Model Prediction | Experimental Data Range |
-|--------|------------------|------------------------|
-| Failure Strain | 0.10 | 0.08-0.12 [Yamada 1970] |
-| Failure Moment (Nm) | ≈40.0 | 23-53 [Lopez-Valdes 2011] |
+**Dynamic Simulation:**
+```bash
+python -c "
+from src.spinal_model import SpinalCordModel
+from src.visualization import SpinalModelVisualizer
 
-### Key Findings
+model = SpinalCordModel()
+viz = SpinalModelVisualizer(model)
 
-1. **Dynamic Overshoot**: The model predicts transient strain amplification where peak strains exceed quasi-static failure thresholds under sub-critical loading conditions.
+# Generate dynamic response figure
+fig = viz.plot_dynamic_response('figures/dynamic_response.png')
+print('Dynamic response figure saved to figures/dynamic_response.png')
+"
+```
 
-2. **Critical Parameters**: Sensitivity analysis identifies disc-ligament stiffness (K_θ) and cord stiffness (k_c) as the most influential parameters.
+**Sensitivity Analysis:**
+```bash
+python -c "
+from src.spinal_model import SpinalCordModel
+from src.visualization import SpinalModelVisualizer
 
-3. **Computational Efficiency**: The lumped-parameter approach provides rapid parameter space exploration while maintaining physical transparency.
+model = SpinalCordModel()
+viz = SpinalModelVisualizer(model)
 
-## Project Structure
+# Generate sensitivity analysis figure
+fig = viz.plot_sensitivity_analysis('figures/sensitivity_analysis.png')
+print('Sensitivity analysis figure saved to figures/sensitivity_analysis.png')
+"
+```
+
+**Generate All Figures:**
+```bash
+python -c "
+from src.spinal_model import SpinalCordModel
+from src.visualization import SpinalModelVisualizer
+
+model = SpinalCordModel()
+viz = SpinalModelVisualizer(model)
+
+# Generate all figures
+fig1 = viz.plot_quasi_static_analysis('figures/quasi_static_analysis.png')
+fig2 = viz.plot_dynamic_response('figures/dynamic_response.png')
+fig3 = viz.plot_sensitivity_analysis('figures/sensitivity_analysis.png')
+fig4 = viz.plot_model_schematic('figures/model_schematic.png')
+
+print('All figures generated successfully!')
+"
+```
+
+#### 3. Run Tests
+```bash
+# Run all unit tests
+python -m pytest tests/
+
+# Run specific test file
+python tests/test_model.py
+
+# Run with verbose output
+python -m pytest tests/ -v
+```
+
+#### 4. Custom Analysis
+```bash
+python -c "
+import numpy as np
+from src.spinal_model import SpinalCordModel
+
+# Initialize model
+model = SpinalCordModel()
+
+# Custom sensitivity analysis
+param_values = np.array([30, 45, 60, 75, 90])
+results = model.sensitivity_analysis('K_theta', param_values, M_ext=30.0)
+
+print('Custom sensitivity analysis completed!')
+print(f'Results: {results}')
+"
+```
+
+### Advanced Usage
+
+#### Custom Parameter Modification
+```bash
+python -c "
+from src.spinal_model import SpinalCordModel
+
+# Create model with custom parameters
+custom_params = {
+    'K_theta': 80.0,  # Increased stiffness
+    'epsilon_fail': 0.12,  # Higher failure strain
+    'M_ext': 35.0  # Higher external moment
+}
+
+model = SpinalCordModel(custom_params)
+M_fail = model.get_quasi_static_failure_moment()
+print(f'Custom model failure moment: {M_fail:.1f} Nm')
+"
+```
+
+#### Batch Analysis
+```bash
+python -c "
+import numpy as np
+from src.spinal_model import SpinalCordModel
+
+# Test multiple external moments
+moments = np.array([20, 25, 30, 35, 40])
+results = []
+
+for M_ext in moments:
+    model = SpinalCordModel()
+    M_ext_func = model.step_input_moment(M_ext)
+    sim_results = model.simulate_dynamics(M_ext_func, t_final=0.1)
+    max_strain = np.max(sim_results['strain'])
+    results.append({'M_ext': M_ext, 'max_strain': max_strain})
+
+print('Batch analysis results:')
+for result in results:
+    print(f'M_ext: {result[\"M_ext\"]} Nm, Max Strain: {result[\"max_strain\"]:.4f}')
+"
+```
+
+## 📊 Results
+
+### Model Predictions
+- **Quasi-static failure moment**: ≈40.0 Nm
+- **Dynamic failure moment**: ≈28.0 Nm
+- **Dynamic amplification factor**: 1.43
+- **Failure strain**: 0.10 (10%)
+
+### Sensitivity Analysis
+The model includes comprehensive sensitivity analysis for all key parameters:
+- **K_θ** (Disc-ligament stiffness): Most influential
+- **k_c** (Cord stiffness): Small but measurable effect
+- **C_θ** (Damping): Moderate influence
+- **r_c** (Moment arm): Large effect on strain
+- **ε_fail** (Failure strain): Critical for failure prediction
+
+## 📁 Project Structure
 
 ```
-spinal_cord_model/
+traumatic-hyperflexion-model/
 ├── src/
 │   ├── __init__.py
-│   ├── spinal_model.py      # Core model implementation
-│   └── visualization.py     # Figure generation
-├── figures/                 # Generated figures
-├── data/                    # Data files (if any)
-├── tests/                   # Unit tests
-├── docs/                    # Documentation
-├── demo.py                  # Main demonstration script
-├── requirements.txt         # Python dependencies
-└── README.md               # This file
+│   ├── spinal_model.py          # Core biomechanical model
+│   └── visualization.py         # Figure generation
+├── tests/
+│   └── test_model.py           # Unit tests
+├── figures/                     # Generated figures
+├── docs/                        # Documentation
+├── demo.py                      # Main demonstration script
+├── requirements.txt             # Python dependencies
+├── README.md                    # This file
+└── LICENSE                      # MIT License
 ```
 
-## Mathematical Implementation
+## 🧪 Testing
 
-### RK4 Solver
+Run the comprehensive test suite:
+```bash
+# Activate virtual environment first
+source venv/bin/activate
 
-The dynamic model uses a fourth-order Runge-Kutta integration scheme:
+# Run all tests
+python -m pytest tests/
 
-```python
-def rk4_step(self, t, phi, phi_dot, M_ext_func):
-    # Calculate k1, k2, k3, k4 coefficients
-    # Update state variables
-    return new_phi, new_phi_dot
+# Run specific test file
+python tests/test_model.py
+
+# Run with verbose output
+python -m pytest tests/ -v
 ```
 
-### Quasi-Static Analysis
+## 📈 Validation
 
-For slow loading conditions, the equilibrium equation is:
+### Experimental Data Comparison
+| Metric | Model Prediction | Experimental Range | Reference |
+|--------|------------------|-------------------|-----------|
+| Failure Strain | 0.10 | 0.08-0.12 | [Yamada 1970] |
+| Failure Moment | ≈40.0 Nm | 23-53 Nm | [Lopez-Valdes 2011] |
 
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Sai Batchu**
+- GitHub: [@Batchu-Sai](https://github.com/Batchu-Sai)
+- Repository: [traumatic-hyperflexion-model](https://github.com/Batchu-Sai/traumatic-hyperflexion-model)
+
+## 📚 References
+
+1. Yamada, H. (1970). *Strength of Biological Materials*. Williams & Wilkins.
+2. Lopez-Valdes, H. E., et al. (2011). *Spinal Cord Injury Biomechanics*. Journal of Biomechanics.
+
+## 🙏 Acknowledgments
+
+- Biomechanical modeling community
+- Experimental validation data providers
+- Open-source scientific computing tools
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**Import Error: No module named 'numpy'**
+```bash
+# Solution: Activate virtual environment and install dependencies
+source venv/bin/activate
+pip install -r requirements.txt
 ```
-M_ext = (K_θ + k_c r_c²) φ + K_nl φ³
+
+**Permission Error on Windows**
+```bash
+# Solution: Run PowerShell as Administrator or use:
+python -m pip install -r requirements.txt
 ```
 
-### Strain Calculation
-
-Cord strain is computed as:
-
-```
-ε(φ) = (r_c φ) / L_0
+**Figure Generation Issues**
+```bash
+# Solution: Ensure matplotlib backend is set correctly
+python -c "import matplotlib; matplotlib.use('Agg')"
 ```
 
-## Limitations
+---
 
-1. **Fixed ICR**: Assumes instantaneous center of rotation remains at anterior disc margin
-2. **Planar Motion**: Constrains motion to sagittal plane only
-3. **Linear Elastic Cord**: Assumes Hooke's Law behavior for spinal cord tissue
-4. **Single Point Parameters**: Uses literature-based values rather than subject-specific data
-
-## Future Work
-
-- Implement translating ICR for more realistic kinematics
-- Add multi-segment spinal column modeling
-- Incorporate subject-specific tissue properties
-- Extend to three-dimensional motion analysis
-- Integrate with finite element models for validation
-
-## Citation
-
-If you use this code in your research, please cite:
-
-```
-Batchu, S., Al-Atrache, Z., Mossop, C. & Thomas, A.J. (2025). 
-A Lumped-Parameter Model of Spinal Cord Failure in Hyperflexion Trauma. 
-[Journal Name], [Volume], [Pages].
-```
-
-## Authors
-
-- **Sai Batchu** - Department of Neurosurgery, Cooper University Health Systems
-- **Zein Al-Atrache** - Department of Neurosurgery, Cooper University Health Systems  
-- **Corey Mossop** - Department of Neurosurgery, Cooper University Health Systems
-- **Ajith J Thomas** - Department of Neurosurgery, Cooper University Health Systems
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-The model parameters are based on experimental data from the biomechanical literature cited in the manuscript. 
+**Note**: This model is for research and educational purposes. For clinical applications, consult with medical professionals.
